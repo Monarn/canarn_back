@@ -1,0 +1,25 @@
+name: Update Backend on Raspberry Pi
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Copy Backend to Raspberry Pi
+        run: scp -r ./canarn_back/* romann@canarn.fr:/var/www/canarn/server/server/
+
+      - name: SSH into Raspberry Pi and Update Backend
+        run: |
+          ssh pi@your-raspberry-ip 'cd /var/www/canarn/server/server && git pull'
+          ssh pi@your-raspberry-ip 'sudo systemctl restart canarn-backend'
+        env:
+          RASPBERRY_PI_PASSWORD: ${{ secrets.RASPBERRY_PI_PASSWORD }}
+

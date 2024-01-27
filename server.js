@@ -38,11 +38,11 @@ const httpsOptions = {
 const server = https.createServer(httpsOptions, app);
 
 const corsOptions = {
-  origin: [
+  origin: "*"/*[
     "https://canarn.fr",
     "http://localhost:3000",
     "http://192.168.1.49:19006",
-  ],
+  ]*/,
   methods: "GET,POST",
   allowedHeaders: "Content-Type,Authorization",
   credentials: true,

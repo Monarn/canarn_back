@@ -163,34 +163,42 @@ const getMusic = async (req, res) => {
     const song = "/var/www/canarn/build/" + musicRes.musicPath;
     const image = "/var/www/canarn/build/" + musicRes.imagePath;
 
-    res.attachment("song");
-    res.sendFile(song, (err) => {
-      if (err) {
-        res.status(401).json({
-          'message': "Il y a eu un problème lors du download de la musique",
-          success: false,
-        });
-        return;
-      }
-    })
+    if (req.query.type === "song") {
+      res.attachment("song");
+      res.sendFile(song, (err) => {
+        if (err) {
+          res.status(401).json({
+            'message': "Il y a eu un problème lors du download de la musique",
+            success: false,
+          });
+          return;
+        }
+      })
+      client.close();
+      return;
+    } else if (req.query.type === "image") {
+      res.attachment("image");
+      res.sendFile(image, (err) => {
+        if (err) {
+          res.status(401).json({
+            'message': "Il y a eu un problème lors du download de l'image",
+            success: false,
+          });
+          return;
+        }
+      })
+      client.close();
+      return;
+    } else {
+      res.status(200).json({
+        success: true,
+        message: 'Les fichers ont été envoyés avec succès'
+      })
 
-    res.attachment("image");
-    res.sendFile(image, (err) => {
-      if (err) {
-        res.status(401).json({
-          'message': "Il y a eu un problème lors du download de l'image",
-          success: false,
-        });
-        return;
-      }
-    })
+      client.close()
 
-    res.status(200).json({
-      success: true,
-      message: 'Les fichers ont été envoyés avec succès'
-    })
+    }
 
-    client.close()
 
   } catch (error) {
     res.status(401).json({

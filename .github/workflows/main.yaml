@@ -19,4 +19,4 @@ jobs:
             ssh -o StrictHostKeyChecking=no romann@90.0.103.81 \
             'cd /var/www/canarn/server/server ; rm -rf ./* ; git pull https://github.com/Monarn/canarn_back main ; npm i; sudo systemctl restart canarn-backend'
         env:
-          RASPBERRY_PI_PASSWORD: ${{ secrets.RASPBERRY_PI_PASSWORD }}
+          RASPBERRY_PI_PASSWORD: ${{ secrets.RASP_PI_PSW }}

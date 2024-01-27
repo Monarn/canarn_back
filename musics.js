@@ -160,8 +160,8 @@ const getMusic = async (req, res) => {
 
     const musicRes = await musics.findOne({ musicUID: req.query.musicUID })
 
-    const song = musicRes.musicPath;
-    const image = musicRes.imagePath;
+    const song = "/var/www/canarn/build/" + musicRes.musicPath;
+    const image = "/var/www/canarn/build/" + musicRes.imagePath;
 
     res.attachment("song");
     res.sendFile(song, (err) => {

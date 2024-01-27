@@ -7,44 +7,45 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
 const {
-    addUser,
-    loginUser,
-    verifyAuthToken,
-    verifyAccount,
-    setTokenResetPassword,
-    resetPassword,
-    disconnectUser,
+  addUser,
+  loginUser,
+  verifyAuthToken,
+  verifyAccount,
+  setTokenResetPassword,
+  resetPassword,
+  disconnectUser,
 } = require("./accounts");
 
 const {
-    uploadMusic,
-    fetchMusic,
-    likeMusic,
-    fetchQueue,
-    deleteMusic,
+  uploadMusic,
+  fetchMusic,
+  likeMusic,
+  fetchQueue,
+  deleteMusic,
+  getMusic,
 } = require("./musics");
 
 const app = express();
-const port = 4003;
+const port = 4000;
 
 app.use(cookieParser());
 
 const httpsOptions = {
-    key: fs.readFileSync("./certs/privkey1.pem"), // Chemin vers votre clé privée
-    cert: fs.readFileSync("./certs/fullchain1.pem"), // Chemin vers votre certificat
+  key: fs.readFileSync("./certs/canarn.fr/privkey.pem"), // Chemin vers votre clé privée
+  cert: fs.readFileSync("./certs/canarn.fr/fullchain.pem"), // Chemin vers votre certificat
 };
 
 const server = https.createServer(httpsOptions, app);
 
 const corsOptions = {
-    origin: [
-        "https://canarn.fr",
-        "http://localhost:3000",
-        "http://192.168.1.29",
-    ],
-    methods: "GET,POST",
-    allowedHeaders: "Content-Type,Authorization",
-    credentials: true,
+  origin: [
+    "https://canarn.fr",
+    "http://localhost:3000",
+    "http://192.168.1.29",
+  ],
+  methods: "GET,POST",
+  allowedHeaders: "Content-Type,Authorization",
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
@@ -75,6 +76,8 @@ app.get("/music/fetchQueue", fetchQueue);
 
 app.get("/music/deleteMusic", deleteMusic);
 
+app.get("/music/getMusic", getMusic);
+
 server.listen(port, () => {
-    console.log(`Serveur Express en cours d'exécution sur le port ${port}`);
+  console.log(`Serveur Express en cours d'exécution sur le port ${port}`);
 });

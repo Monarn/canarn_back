@@ -17,6 +17,6 @@ jobs:
         run: |
           sshpass -p "${{ secrets.RASP_PI_PSW }}" \
             ssh -o StrictHostKeyChecking=no romann@90.0.103.81 \
-            'cd /var/www/canarn/server/server ; rm -rf ./* ; git pull https://github.com/Monarn/canarn_back main ; npm i; sudo systemctl restart canarn-backend'
+            'cd /var/www/canarn/server/server ; rm -rf ./* ; git pull https://github.com/Monarn/canarn_back main ;sleep 2 ; npm i; sudo systemctl restart canarn-backend'
         env:
           RASPBERRY_PI_PASSWORD: ${{ secrets.RASP_PI_PSW }}

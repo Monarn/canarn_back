@@ -41,7 +41,7 @@ const corsOptions = {
   origin: [
     "https://canarn.fr",
     "http://localhost:3000",
-    "http://192.168.1.49",
+    "http://192.168.1.49:19006",
   ],
   methods: "GET,POST",
   allowedHeaders: "Content-Type,Authorization",

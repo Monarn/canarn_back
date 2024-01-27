@@ -15,7 +15,7 @@ jobs:
 
       - name: SSH into Raspberry Pi and Update Backend
         run: |
-          sshpass -p "${{ secrets.RASPBERRY_PI_PASSWORD }}" \
+          sshpass -p "${{ secrets.RASP_PI_PSW }}" \
             ssh -o StrictHostKeyChecking=no romann@90.0.103.81 \
             'cd /var/www/canarn/server/server ; sudo git pull ; sudo systemctl restart canarn-backend'
         env:

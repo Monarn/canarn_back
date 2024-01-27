@@ -18,8 +18,8 @@ jobs:
 
       - name: SSH into Raspberry Pi and Update Backend
         run: |
-          ssh pi@your-raspberry-ip 'cd /var/www/canarn/server/server && git pull'
-          ssh pi@your-raspberry-ip 'sudo systemctl restart canarn-backend'
+          ssh romann@90.0.103.81 'cd /var/www/canarn/server/server && git pull'
+          ssh romann@90.0.103.81 'sudo systemctl restart canarn-backend'
         env:
           RASPBERRY_PI_PASSWORD: ${{ secrets.RASPBERRY_PI_PASSWORD }}
 

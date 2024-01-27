@@ -166,7 +166,7 @@ const getMusic = async (req, res) => {
     res.attachment("song");
     res.sendFile(song, (err) => {
       if (err) {
-        res.status(err.status).json({
+        res.status(401).json({
           'message': "Il y a eu un problème lors du download de la musique",
           success: false,
         });
@@ -177,7 +177,7 @@ const getMusic = async (req, res) => {
     res.attachment("image");
     res.sendFile(image, (err) => {
       if (err) {
-        res.status(err.status).json({
+        res.status(401).json({
           'message': "Il y a eu un problème lors du download de l'image",
           success: false,
         });
@@ -193,7 +193,7 @@ const getMusic = async (req, res) => {
     client.close()
 
   } catch (error) {
-    res.status(error.status).json({
+    res.status(401).json({
       success: false,
       error: error.message,
     })

@@ -164,7 +164,7 @@ const getMusic = async (req, res) => {
     const image = "/var/www/canarn/build/" + musicRes.imagePath;
 
     if (req.query.type === "song") {
-      res.attachment("song");
+      res.attachment(req.query.musicUID);
       res.sendFile(song, (err) => {
         if (err) {
           res.status(401).json({

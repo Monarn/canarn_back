@@ -167,10 +167,6 @@ const getMusic = async (req, res) => {
       res.attachment(req.query.musicUID);
       res.sendFile(song, (err) => {
         if (err) {
-          res.status(401).json({
-            'message': "Il y a eu un problème lors du download de la musique",
-            success: false,
-          });
           return;
         }
       })
@@ -179,14 +175,10 @@ const getMusic = async (req, res) => {
     } else if (req.query.type === "image") {
       res.attachment("image");
       res.sendFile(image, (err) => {
-        if (err) {
-          res.status(401).json({
-            'message': "Il y a eu un problème lors du download de l'image",
-            success: false,
-          });
-          return;
-        }
-      })
+
+        return;
+      }
+      )
       client.close();
       return;
     } else {

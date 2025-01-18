@@ -327,6 +327,11 @@ const fetchQueue = async (req, res) => {
       ])
       .toArray();
 
+    if (req.query.musicUID) {
+      const firstMusic = await musics.findOne({ musicUID: req.query.musicUID })
+      queue.unshift(firstMusic)
+    }
+
     res.status(200).json({
       success: true, queue: queue, message: "salut",
     });

@@ -327,13 +327,14 @@ const fetchQueue = async (req, res) => {
       ])
       .toArray();
 
-    res.status(200).json({ success: true, queue: queue });
+    res.status(200).json({
+      success: true, queue: queue, message: "salut mek",
+    });
     client.close();
   } catch (e) {
     res.status(400).json({
 
       success: false,
-      message: "salut mek",
       message: "Une erreur s'est produite" + e,
     });
   }

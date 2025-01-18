@@ -328,7 +328,7 @@ const fetchQueue = async (req, res) => {
       .toArray();
 
     res.status(200).json({
-      success: true, queue: queue, message: "salut mek",
+      success: true, queue: queue, message: "salut",
     });
     client.close();
   } catch (e) {

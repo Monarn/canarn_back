@@ -331,8 +331,9 @@ const fetchQueue = async (req, res) => {
     client.close();
   } catch (e) {
     res.status(400).json({
+
       success: false,
-      message: "salut",
+      message: "salut mek",
       message: "Une erreur s'est produite" + e,
     });
   }
